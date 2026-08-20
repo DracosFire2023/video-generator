@@ -46,21 +46,23 @@ const createDefaultProject = (name: string): VideoProject => ({
 
 export const useVideoStore = create<VideoStore>((set) => ({
   project: null,
-  createProject: (name, width = 1920, height = 1080) =>
-    set(() => ({
+  createProject: (name, width = 1920, height = 1080) => {
+    set({
       project: {
         ...createDefaultProject(name),
         width,
         height,
       },
-    })),
-  addClip: (clip) =>
+    })
+  },
+  addClip: (clip) => {
     set((state) => ({
       project: state.project
         ? { ...state.project, clips: [...state.project.clips, clip] }
         : null,
-    })),
-  removeClip: (id) =>
+    }))
+  },
+  removeClip: (id) => {
     set((state) => ({
       project: state.project
         ? {
@@ -68,8 +70,9 @@ export const useVideoStore = create<VideoStore>((set) => ({
             clips: state.project.clips.filter((clip) => clip.id !== id),
           }
         : null,
-    })),
-  updateClip: (id, updates) =>
+    }))
+  },
+  updateClip: (id, updates) => {
     set((state) => ({
       project: state.project
         ? {
@@ -79,11 +82,13 @@ export const useVideoStore = create<VideoStore>((set) => ({
             ),
           }
         : null,
-    })),
-  setDuration: (duration) =>
+    }))
+  },
+  setDuration: (duration) => {
     set((state) => ({
       project: state.project
         ? { ...state.project, duration }
         : null,
-    })),
+    }))
+  },
 }))
