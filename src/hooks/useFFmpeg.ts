@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
-import { FFmpeg, toBlobURL } from '@ffmpeg/ffmpeg'
+import { FFmpeg } from '@ffmpeg/ffmpeg'
+import { toBlobURL } from '@ffmpeg/util'
 
 export const useFFmpeg = () => {
   const [ffmpeg, setFFmpeg] = useState<FFmpeg | null>(null)
