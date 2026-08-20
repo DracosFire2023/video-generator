@@ -13,11 +13,10 @@ export default defineConfig({
     sourcemap: false,
     minify: 'terser',
     terserOptions: {
-      mangle: {
-        keep_fnames: true,
-      },
+      mangle: false, // Prevents Terser from renaming state handlers and hook functions
       compress: {
         keep_fnames: true,
+        keep_classnames: true,
       },
     },
   }
