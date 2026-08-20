@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
+import { FFmpeg } from '@ffmpeg/ffmpeg'
+import { toBlobURL } from '@ffmpeg/util'
 
 export const useFFmpeg = () => {
-  const [ffmpeg, setFFmpeg] = useState<any>(null)
+  const [ffmpeg, setFFmpeg] = useState<FFmpeg | null>(null)
   const [isLoaded, setIsLoaded] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -9,17 +11,6 @@ export const useFFmpeg = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const ffmpegModule = await import('@ffmpeg/ffmpeg')
-        const utilModule = await import('@ffmpeg/util')
-
-        // Resolve constructors/functions across both named and default ES module exports
-        const FFmpeg = ffmpegModule.FFmpeg || (ffmpegModule as any).default?.FFmpeg
-        const toBlobURL = utilModule.toBlobURL || (utilModule as any).default?.toBlobURL
-
-        if (typeof toBlobURL !== 'function') {
-          throw new Error('Failed to resolve toBlobURL from @ffmpeg/util')
-        }
-
         const ffmpegInstance = new FFmpeg()
         const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
 
