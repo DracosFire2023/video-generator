@@ -95,7 +95,14 @@ function App() {
           </div>
         </div>
       </header>
-
+      
+  return (
+    <AnimatePresence>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
+        {/* ... existing card content ... */}
+      </div>
+    </AnimatePresence>
+  )
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
