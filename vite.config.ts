@@ -11,6 +11,14 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'terser'
+    minify: 'terser',
+    terserOptions: {
+      mangle: {
+        keep_fnames: true,
+      },
+      compress: {
+        keep_fnames: true,
+      },
+    },
   }
 })
