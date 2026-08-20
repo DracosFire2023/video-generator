@@ -21,50 +21,53 @@ function App() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
-        <motion.div
-          className="w-full max-w-md"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.3 }}
-        >
-          <div className="bg-gray-900 rounded-lg border border-gray-700 p-8 space-y-6">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-white mb-2">🎬 Video Generator</h1>
-              <p className="text-gray-400">Create videos with code</p>
-            </div>
-
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                  Project Name
-                </label>
-                <input
-                  type="text"
-                  value={projectName}
-                  onChange={(e) => setProjectName(e.target.value)}
-                  placeholder="Enter project name"
-                  className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
-                  onKeyPress={(e) => e.key === 'Enter' && handleCreateProject()}
-                />
+      <AnimatePresence>
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
+          <motion.div
+            className="w-full max-w-md"
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+          >
+            <div className="bg-gray-900 rounded-lg border border-gray-700 p-8 space-y-6">
+              <div className="text-center">
+                <h1 className="text-4xl font-bold text-white mb-2">🎬 Video Generator</h1>
+                <p className="text-gray-400">Create videos with code</p>
               </div>
 
-              <button
-                onClick={handleCreateProject}
-                className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition"
-              >
-                Create Project
-              </button>
-            </div>
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                    Project Name
+                  </label>
+                  <input
+                    type="text"
+                    value={projectName}
+                    onChange={(e) => setProjectName(e.target.value)}
+                    placeholder="Enter project name"
+                    className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition"
+                    onKeyPress={(e) => e.key === 'Enter' && handleCreateProject()}
+                  />
+                </div>
 
-            <div className="pt-4 border-t border-gray-700">
-              <p className="text-xs text-gray-500 text-center">
-                Built with React, Vite, FFmpeg.wasm, and Canvas API
-              </p>
+                <button
+                  onClick={handleCreateProject}
+                  className="w-full px-4 py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold rounded-lg transition"
+                >
+                  Create Project
+                </button>
+              </div>
+
+              <div className="pt-4 border-t border-gray-700">
+                <p className="text-xs text-gray-500 text-center">
+                  Built with React, Vite, FFmpeg.wasm, and Canvas API
+                </p>
+              </div>
             </div>
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
+      </AnimatePresence>
     )
   }
 
@@ -95,14 +98,7 @@ function App() {
           </div>
         </div>
       </header>
-      
-  return (
-    <AnimatePresence>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center p-4">
-        {/* ... existing card content ... */}
-      </div>
-    </AnimatePresence>
-  )
+
       {/* Main Content */}
       <main className="max-w-7xl mx-auto px-4 py-6 space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
