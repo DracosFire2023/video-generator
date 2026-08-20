@@ -9,9 +9,20 @@ export const useFFmpeg = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const { FFmpeg, toBlobURL } = await import('@ffmpeg/ffmpeg')
+        const ffmpegModule = await import('@ffmpeg/ffmpeg')
+        const utilModule = await import('@ffmpeg/util')
+
+        // Resolve constructors/functions across both named and default ES module exports
+        const FFmpeg = ffmpegModule.FFmpeg || (ffmpegModule as any).default?.FFmpeg
+        const toBlobURL = utilModule.toBlobURL || (utilModule as any).default?.toBlobURL
+
+        if (typeof toBlobURL !== 'function') {
+          throw new Error('Failed to resolve toBlobURL from @ffmpeg/util')
+        }
+
         const ffmpegInstance = new FFmpeg()
-        const baseURL = 'https://cdn.jsdelivr.net/npm/@ffmpeg/ffmpeg@0.12.10/dist/esm'
+        const baseURL = 'https://unpkg.com/@ffmpeg/core@0.12.6/dist/esm'
+
         await ffmpegInstance.load({
           coreURL: await toBlobURL(
             `${baseURL}/ffmpeg-core.js`,
@@ -22,6 +33,7 @@ export const useFFmpeg = () => {
             'application/wasm'
           ),
         })
+
         setFFmpeg(ffmpegInstance)
         setIsLoaded(true)
       } catch (err) {
