@@ -1,6 +1,6 @@
 # Frontend Video Generator
 
-A powerful, open-source video generator built with React, Vite and modern web technologies. Create videos directly in your browser using open-source video libraries.
+A powerful, open-source video generator built with love, React, Vite and modern web technologies. Create videos directly in your browser using open-source video libraries.
 
 ## 🚀 Features
 
