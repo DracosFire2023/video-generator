@@ -5,7 +5,7 @@ import { Timeline } from './components/Timeline'
 import { ClipPanel } from './components/ClipPanel'
 import { VideoExporter } from './components/VideoExporter'
 import { VideoClip } from './store/videoStore'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 function App() {
   const { project, createProject } = useVideoStore()
